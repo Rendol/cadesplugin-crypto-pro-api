@@ -29,7 +29,6 @@ const {
     CADESCOM_HASH_ALGORITHM_CP_GOST_3411_2012_512,
     CADESCOM_CADES_BES,
     CADESCOM_XML_SIGNATURE_TYPE_ENVELOPED,
-    CADESCOM_AUTHENTICATED_ATTRIBUTE_DOCUMENT_NAME,
   },
 } = constants;
 
@@ -287,10 +286,6 @@ async function signFile(thumbprint, base64, type = true, signOption = CAPICOM_CE
     await oDateAttrs.propset_Value(new Date());
     await authenticatedAttributes2.Add(oDateAttrs);
 
-    await oNameAttr.propset_Name(CADESCOM_AUTHENTICATED_ATTRIBUTE_DOCUMENT_NAME);
-    await oNameAttr.propset_Value("Document Name");
-    await authenticatedAttributes2.Add(oNameAttr);
-
     await oSignedData.propset_ContentEncoding(CADESCOM_BASE64_TO_BINARY);
     await oSignedData.propset_Content(base64);
 
@@ -325,7 +320,6 @@ async function signHash(thumbprint, hash, signOption = CAPICOM_CERTIFICATE_INCLU
     }
 
     const oDateAttrs = await cadescomMethods.oAtts();
-    const oNameAttr = await cadescomMethods.oAtts();
     const oSignedData = await cadescomMethods.oSignedData();
     const oSigner = await cadescomMethods.oSigner();
     const currentCert = await currentCadesCert(thumbprint);
@@ -335,12 +329,8 @@ async function signHash(thumbprint, hash, signOption = CAPICOM_CERTIFICATE_INCLU
     await oDateAttrs.propset_Value(new Date());
     await authenticatedAttributes2.Add(oDateAttrs);
 
-    await oNameAttr.propset_Name(CADESCOM_AUTHENTICATED_ATTRIBUTE_DOCUMENT_NAME);
-    await oNameAttr.propset_Value("Document Name");
-    await authenticatedAttributes2.Add(oNameAttr);
-
     const oHashedData = await cadescomMethods.oHashedData();
-    await oHashedData.propset_Algorithm(CADESCOM_HASH_ALGORITHM_CP_GOST_3411_2012_512);
+    await oHashedData.propset_Algorithm(CADESCOM_HASH_ALGORITHM_CP_GOST_3411);
     await oHashedData.propset_DataEncoding(CADESCOM_BASE64_TO_BINARY);
     await oHashedData.SetHashValue(hash);
 

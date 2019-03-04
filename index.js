@@ -22,7 +22,7 @@ import {
 // NOTE cadesplugin await function
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const cadespluginOnload = (async function cadespluginOnload() {
+const cadespluginOnload = (async function cadespluginOnload(options = null) {
   try {
     await window.cadesplugin;
 
