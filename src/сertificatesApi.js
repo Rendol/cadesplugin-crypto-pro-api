@@ -13,9 +13,7 @@ import * as constants from './constants';
 
 const {
   CAPICOM: {
-    CAPICOM_CURRENT_USER_STORE,
-    CAPICOM_MY_STORE,
-    CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED,
+    CADESCOM_CONTAINER_STORE,
     CAPICOM_CERTIFICATE_FIND_SHA1_HASH,
     CAPICOM_CERTIFICATE_FIND_TIME_VALID,
     CAPICOM_CERTIFICATE_FIND_EXTENDED_PROPERTY,
@@ -58,7 +56,7 @@ async function about() {
 async function getCertsList() {
   try {
     const oStore = await cadescomMethods.oStore();
-    await oStore.Open(CAPICOM_CURRENT_USER_STORE, CAPICOM_MY_STORE, CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED);
+    await oStore.Open(CADESCOM_CONTAINER_STORE);
 
     const certificates = await oStore.Certificates;
 
@@ -189,7 +187,7 @@ async function currentCadesCert(thumbprint) {
     }
     const oStore = await cadescomMethods.oStore();
 
-    await oStore.Open(CAPICOM_CURRENT_USER_STORE, CAPICOM_MY_STORE, CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED);
+    await oStore.Open(CADESCOM_CONTAINER_STORE);
 
     const certificates = await oStore.Certificates;
     const count = await certificates.Count;
