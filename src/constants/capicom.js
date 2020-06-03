@@ -1,6 +1,10 @@
 /**
  * @constant {Number} CAPICOM_LOCAL_MACHINE_STORE Локальное хранилище компьютера.
  */
+export const CADESCOM_CONTAINER_STORE = 100;
+/**
+ * @constant {Number} CAPICOM_LOCAL_MACHINE_STORE Локальное хранилище компьютера.
+ */
 export const CAPICOM_LOCAL_MACHINE_STORE = 1;
 /**
  * @constant {Number} CAPICOM_CURRENT_USER_STORE Хранилище текущего пользователя.
